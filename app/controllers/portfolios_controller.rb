@@ -1,4 +1,5 @@
 class PortfoliosController < ApplicationController
+  
   def index
     @portfolio_items = Portfolio.all
   end
@@ -29,5 +30,9 @@ class PortfoliosController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def show
+    @portfolio = Portfolio.find_by(id: params[:id])
   end
 end
