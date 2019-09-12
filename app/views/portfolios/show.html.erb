@@ -1,4 +1,4 @@
-<%= image_tag @portfolio.main_image %>
+<%= image_tag @portfolio.main_image if @portfolio.main_image.present? %>
 <h1><%= @portfolio.title %></h1>
 <em><%= @portfolio.subtitle %></em>
 <p><%= @portfolio.body %></p>
