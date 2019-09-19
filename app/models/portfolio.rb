@@ -1,12 +1,15 @@
 class Portfolio < ApplicationRecord  
+  # Validations
   validates_presence_of :title, :subtitle, :body, :main_image, :thumb_image
 
+  # Scopes
   scope :ruby_on_rails, -> { where(subtitle: "Ruby on Rails") }
 
   def self.angular
     where(subtitle: "Angular")
   end
-
+  
+  # Callbacks
   after_initialize :set_default_image
 
   def set_default_image
