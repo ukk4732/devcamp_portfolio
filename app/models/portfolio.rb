@@ -1,5 +1,6 @@
 class Portfolio < ApplicationRecord  
   # Validations
+  include Placeholder
   validates_presence_of :title, :subtitle, :body, :main_image, :thumb_image
 
   # Scopes
@@ -13,8 +14,8 @@ class Portfolio < ApplicationRecord
   after_initialize :set_default_image
 
   def set_default_image
-    self.main_image ||= "https://via.placeholder.com/600x400/0000FF/808080%20?Text=Digital.com%20C/O%20https://placeholder.com/"
-    self.thumb_image ||= "https://via.placeholder.com/350x200/0000FF/808080%20?Text=Digital.com%20C/O%20https://placeholder.com/"
+    self.main_image ||= Placeholder.image_generator(width: 600, hieght: 400)
+    self.thumb_image ||= Placeholder.image_generator(width: 350, hieght: 200)
   end
 
 end
