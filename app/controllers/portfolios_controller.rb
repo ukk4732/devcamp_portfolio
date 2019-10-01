@@ -14,7 +14,7 @@ class PortfoliosController < ApplicationController
   end
 
   def create
-    @portfolio = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle, :body, technologies_attributes: [:name]))
+    @portfolio = Portfolio.new(portfolio_params)
     respond_to do |format|
       if @portfolio.save
         format.html { redirect_to portfolios_path, notice: 'Portfolio was successfully created.' }
@@ -26,11 +26,12 @@ class PortfoliosController < ApplicationController
 
   def edit
     @portfolio = Portfolio.find_by(id: params[:id])
+    3.times { @portfolio.technologies.build } unless @portfolio.technologies.present?
   end
 
   def update
     @portfolio = Portfolio.find_by(id: params[:id])
-    if @portfolio.update(params.require(:portfolio).permit(:title, :subtitle, :body))
+    if @portfolio.update(portfolio_params)
       redirect_to portfolios_path, notice: "Record updated successfully"
     else
       render :edit
@@ -45,6 +46,12 @@ class PortfoliosController < ApplicationController
     @portfolio = Portfolio.find_by(id: params[:id])
     @portfolio.destroy
     redirect_to portfolios_path, notice: 'Portfolio was successfully deleted.'
+  end
+
+  private
+
+  def portfolio_params
+    params.require(:portfolio).permit(:title, :subtitle, :body, technologies_attributes: [:id, :name])  
   end
 
 end
