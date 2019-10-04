@@ -18,10 +18,7 @@
     <%= header_links %>
 
     <%= yield %>
-
-    <% if session[:source] %>
-      <hr>
-      <p>Thanks for comming from: <%= session[:source] %></p>
-    <% end %>
+    <br>
+    <%= visitor_message("application") %>
   </body>
 </html>

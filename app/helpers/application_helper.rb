@@ -7,4 +7,11 @@ module ApplicationHelper
       (link_to "Login", new_user_session_path)
     end
   end
+
+  def visitor_message(layout)
+    if session[:source]
+      content_tag(:p, "Thanks for comming from: #{session[:source]}, currently you are on #{layout} layout.", class: "xyz")
+    end
+  end
+
 end
