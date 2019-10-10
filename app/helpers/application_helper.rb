@@ -14,4 +14,8 @@ module ApplicationHelper
     end
   end
 
+  def copyright_message
+    UmeshGem::Copyright.copyright_message("Umesh", "All right regerved.")
+  end
+
 end
