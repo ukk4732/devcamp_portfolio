@@ -106,3 +106,20 @@ body {
 .mastfoot {
   color: rgba(255, 255, 255, .5);
 }
+
+
+/*
+ * Bootstrap override
+ */
+
+ .card-body{
+ color: black;
+ }
+
+ .form-data-left{
+  text-align: left;
+ }
+
+ .back-link a{
+  color: black;
+ }
