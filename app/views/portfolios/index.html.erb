@@ -1,3 +1,5 @@
 <h1>Portfolio Index</h1>
-<%= link_to "New Portfolio", new_portfolio_path if logged_in?(:site_admin) %>
-<%= render partial: "portfolio_item", collection: @portfolio_items %>
+<%#= link_to "New Portfolio", new_portfolio_path if logged_in?(:site_admin) %>
+<div class="row">
+  <%= render partial: "portfolio_item", collection: @portfolio_items %>
+</div>

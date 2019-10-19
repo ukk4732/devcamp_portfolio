@@ -1,7 +1,10 @@
 module ApplicationHelper
   
   def header_links(style)
-    if current_user.is_a?(GuestUser)
+    if current_user.is_a?(GuestUser) && style == "text-white"
+      (link_to "Register", new_user_registration_path, class: style) + "<br>".html_safe +
+      (link_to "Login", new_user_session_path, class: style)
+    elsif current_user.is_a?(GuestUser)
       (link_to "Register", new_user_registration_path, class: style) + " ".html_safe +
       (link_to "Login", new_user_session_path, class: style)
     else
