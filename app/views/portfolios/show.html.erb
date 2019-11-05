@@ -1,8 +1,16 @@
-<%= image_tag @portfolio.main_image if @portfolio.main_image.present? %>
-<h1><%= @portfolio.title %></h1>
-<em><%= @portfolio.subtitle %></em>
-<p><%= @portfolio.body %></p>
-<h3>Added technologies</h3>
-<% @portfolio.technologies.each do |tech| %>
-  <%= tech.name %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <%= image_tag @portfolio.main_image if @portfolio.main_image.present? %>      
+    </div>
+    <div class="col-md-5">
+      <h1><%= @portfolio.title %></h1>
+      <em><%= @portfolio.subtitle %></em>
+      <p><%= @portfolio.body %></p>
+      <h3>Added technologies</h3>
+      <% @portfolio.technologies.each do |tech| %>
+        <%= tech.name %>
+      <% end %>
+    </div>
+  </div>
+</div>
