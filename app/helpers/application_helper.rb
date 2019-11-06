@@ -22,15 +22,37 @@ module ApplicationHelper
     UmeshGem::Copyright.copyright_message("Umesh", "All right regerved.")
   end
 
+  def link_items
+    [
+      {
+        url: root_path,
+        name: "Home"
+      },
+      {
+        url: about_path,
+        name: "About"
+      },
+      {
+        url: contact_path,
+        name: "Contact"
+      },
+      {
+        url: blogs_path,
+        name: "Blog"
+      },
+      {
+        url: portfolios_path,
+        name: "Portfolio"
+      }
+    ]
+  end
+
   def nav_items(style, tag)
-links = <<NAV
-<#{tag}><a href="#{root_path}", class="#{style} #{active?(root_path)}">Home</a></#{tag}>
-<#{tag}><a href="#{about_path}", class="#{style} #{active?(about_path)}">About</a></#{tag}>
-<#{tag}><a href="#{contact_path}", class="#{style} #{active?(contact_path)}">Contact</a></#{tag}>
-<#{tag}><a href="#{blogs_path}", class="#{style} #{active?(blogs_path)}">Blogs</a></#{tag}>
-<#{tag}><a href="#{portfolios_path}", class="#{style} #{active?(portfolios_path)}">Portfolios</a></#{tag}>
-NAV
-links.html_safe
+    links = ""
+    link_items.each do |link|
+      links << "<#{tag}><a href='#{link[:url]}', class='#{style} #{active?(link[:url])}'>#{link[:name]}</a></#{tag}>"
+    end
+    links.html_safe
   end
 
   def active? path
