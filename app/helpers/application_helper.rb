@@ -24,13 +24,17 @@ module ApplicationHelper
 
   def nav_items(style, tag)
 links = <<NAV
-<#{tag}><a href="#{root_path}", class="#{style}">Home</a></#{tag}>
-<#{tag}><a href="#{about_path}", class="#{style}">About</a></#{tag}>
-<#{tag}><a href="#{contact_path}", class="#{style}">Contact</a></#{tag}>
-<#{tag}><a href="#{blogs_path}", class="#{style}">Blogs</a></#{tag}>
-<#{tag}><a href="#{portfolios_path}", class="#{style}">Portfolios</a></#{tag}>
+<#{tag}><a href="#{root_path}", class="#{style} #{active?(root_path)}">Home</a></#{tag}>
+<#{tag}><a href="#{about_path}", class="#{style} #{active?(about_path)}">About</a></#{tag}>
+<#{tag}><a href="#{contact_path}", class="#{style} #{active?(contact_path)}">Contact</a></#{tag}>
+<#{tag}><a href="#{blogs_path}", class="#{style} #{active?(blogs_path)}">Blogs</a></#{tag}>
+<#{tag}><a href="#{portfolios_path}", class="#{style} #{active?(portfolios_path)}">Portfolios</a></#{tag}>
 NAV
 links.html_safe
+  end
+
+  def active? path
+    "active" if current_page?(path)
   end
 
 end
