@@ -22,4 +22,15 @@ module ApplicationHelper
     UmeshGem::Copyright.copyright_message("Umesh", "All right regerved.")
   end
 
+  def nav_items(style, tag)
+links = <<NAV
+<#{tag}><a href="#{root_path}", class="#{style}">Home</a></#{tag}>
+<#{tag}><a href="#{about_path}", class="#{style}">About</a></#{tag}>
+<#{tag}><a href="#{contact_path}", class="#{style}">Contact</a></#{tag}>
+<#{tag}><a href="#{blogs_path}", class="#{style}">Blogs</a></#{tag}>
+<#{tag}><a href="#{portfolios_path}", class="#{style}">Portfolios</a></#{tag}>
+NAV
+links.html_safe
+  end
+
 end
