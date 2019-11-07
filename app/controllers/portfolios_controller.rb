@@ -3,7 +3,7 @@ class PortfoliosController < ApplicationController
   layout "portfolio"  
   
   def index
-    @portfolio_items = Portfolio.all.order("created_at DESC")
+    @portfolio_items = Portfolio.all.order_by_position
   end
 
   def angular
