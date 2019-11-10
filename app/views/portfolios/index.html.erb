@@ -1,5 +1,45 @@
 <h1>Portfolio Index</h1>
 <%#= link_to "New Portfolio", new_portfolio_path if logged_in?(:site_admin) %>
-<div class="row">
+<div class="row sortable">
   <%= render partial: "portfolio_item", collection: @portfolio_items %>
 </div>
+
+
+<script type="text/javascript">
+
+var ready, set_positions;
+
+set_positions = function() {
+  $('.card').each(function(i) {
+    $(this).attr('data-pos', i + 1);
+  });
+};
+
+ready = function() {
+  set_positions();
+  $('.sortable').sortable();
+  $('.sortable').sortable().bind('sortupdate', function(e, ui) {
+    var updated_order = [];
+    set_positions();
+    
+    $('.card').each(function(i) {
+      updated_order.push({
+        id: $(this).data('id'),
+        position: i + 1
+      });
+    });
+    
+    $.ajax({
+      type: 'PUT',
+      url: '/portfolios/sort',
+      data: {
+        order: updated_order
+      }
+    });
+
+  });
+};
+
+$(document).ready(ready);
+
+</script>
