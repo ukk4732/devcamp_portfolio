@@ -20,7 +20,7 @@ class Portfolio < ApplicationRecord
   end
   
   # Callbacks
-  after_initialize :set_default_image
+  # after_initialize :set_default_image
 
   def set_default_image
     self.main_image ||= Placeholder.image_generator(width: 600, hieght: 400)
