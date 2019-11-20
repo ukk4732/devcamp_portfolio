@@ -9,7 +9,7 @@ class Portfolio < ApplicationRecord
   has_many :technologies
   accepts_nested_attributes_for :technologies, reject_if: lambda {|attr| attr["name"].blank?}
 
-  validates_presence_of :title, :subtitle, :body, :main_image, :thumb_image
+  validates_presence_of :title, :subtitle, :body
 
   # Scopes
   scope :ruby_on_rails, -> { where(subtitle: "Ruby on Rails") }
@@ -22,9 +22,9 @@ class Portfolio < ApplicationRecord
   # Callbacks
   # after_initialize :set_default_image
 
-  def set_default_image
-    self.main_image ||= Placeholder.image_generator(width: 600, hieght: 400)
-    self.thumb_image ||= Placeholder.image_generator(width: 350, hieght: 200)
-  end
+  # def set_default_image
+  #   self.main_image ||= Placeholder.image_generator(width: 600, hieght: 400)
+  #   self.thumb_image ||= Placeholder.image_generator(width: 350, hieght: 200)
+  # end
 
 end
